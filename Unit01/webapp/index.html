@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .test{
+            position: relative;
+        }
+        .test::before{
+            position: absolute;
+            display: inline-block;
+            height: 300px;
+            top: -10px;
+            left: 100px;
+            content: "test1";
+            background-color: aqua;
+        }
+        .test::after{
+            display: block;
+            content: "test3";
+        }
+    </style>
+</head>
+<body>
+890
+<div class="test">test2</div>
+<header>
+    <nav></nav>
+</header>
+<div class="content">
+    <section>1楼</section>
+    <section>2楼</section>
+</div>
+<article>
+    <section>
+        <h1></h1>
+        <p></p>
+    </section>
+    <aside></aside>
+</article>
+<footer></footer>
+</body>
+</html>
