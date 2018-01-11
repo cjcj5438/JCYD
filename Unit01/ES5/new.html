@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   var  Car=function (color) {
+       //constructor==Car 构造函数和初始化这个类 就是一个东西
+       this.color=color;
+   };
+   Car.prototype.sail2=function () {  //原型上的方法
+       console.log(this.color+"13")
+   }
+   var s=new Car();  //new了之后this指向了s
+    console.log(s);
+
+    var BMW=function (color) {
+        Car.call(this, color); //call呢? 就是原先的this 进行改变
+    }
+    //按引用传递
+    BMW.prototype=new Car() //这种方式,是吧原型链上的东西一起拿过来
+    var m=new BMW('red')
+    console.log(m)
+</script>
+</body>
+</html>
