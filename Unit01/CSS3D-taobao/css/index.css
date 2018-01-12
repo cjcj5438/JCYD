@@ -1,0 +1,25 @@
+body{
+	background-image: url('../img/bg.jpg')
+}
+/*蓝色的背景图是1500*1500*/
+/*每张图片的大小是129*1170*/
+.container{
+	margin: 0 auto 0 auto;
+	/*//这里为什么要设置宽度 129*/
+	width: 8.0625rem;
+	perspective: 25rem;
+}
+
+#box{
+	/*转换3D变换*/
+	-webkit-transform-style: preserve-3d;
+	height: 100%;
+     /*视距*/
+	 -webkit-perspective-origin: 50% 50%;
+}
+/*设定每张图片的大小*/
+#box > div{
+	position: absolute;
+	width: 8.0625rem;
+	height: 73.125rem;
+}

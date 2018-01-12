@@ -1,0 +1,14 @@
+body {
+    color: #000;
+}
+
+.k .i:before{
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    box-shadow:
+            -2px 0 0 -1px black,
+            2px 0 0 -1px red,
+            0 -2px 0 -1px green;
+}

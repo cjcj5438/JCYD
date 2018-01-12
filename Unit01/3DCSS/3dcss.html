@@ -18,4 +18,12 @@
     </div>
 </div>
 </body>
+<script>
+    window.addEventListener("devicemotion",function (ev) {
+        ev.acceleration;//加速度
+        ev.accelerationIncludingGravity//重力加速度
+        ev.rotationRate//旋转速度
+        console.log(ev.accelerationIncludingGravity)
+    },true)
+</script>
 </html>

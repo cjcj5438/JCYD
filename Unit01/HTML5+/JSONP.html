@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSONP</title>
+</head>
+<body>
+<script>
+    //获取后台的返回值
+    function test(data) {
+        console.log(data)//data=123
+    }
+</script>
+<script type="text/javascript" src="http://www.xxx.com/index.php?callback=test"></script>
+<!--后台代码
+    if(callback){
+        callback({"data":123})
+        test({"data":123})
+    }else{
+        {"data":123}
+    }
+-->
+</body>
+</html>
