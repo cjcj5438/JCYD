@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery3.2.1.js"></script>
+</head>
+<body>
+<div class="test"></div>
+<script>
+    // 32.51
+    // var s = new $('.test');
+    // var q = $('.test');
+    //new的话s 能都访问jq的原型链所有方法,
+    //不new的话,q 也能访问jq 原型链上的所有方法
+
+    // 先来看new 的情况:
+    // new jQuery  ,new 做了二件事   构造函数,和prototype的方法, 但是构造函数优于原型链上的init()方法所以 原型链上的init方法被闲置了,值挂载么有执行
+    //构造函数每部的return生效了 做什么?  见代码解读4
+
+    // 不new的情况下: 直接是 return new jQuery.fn.init(selector,context)
+    // new jQuery.fn.init 作为中间使者直接 所以new 不new 是一样的  只是原型链上不同
+
+    (function (window, undefiend) {
+        var jQuery = function (selector, context) {
+            return new jQuery.fn.init(selector, context)
+        };
+        jQuery.fn = jQuery.prototype = {
+            init: function (selector, context) {
+            }
+        };
+        jQuery.fn.init.prototype = jQuery.fn;
+        //代码解读 笔记4:
+        //∵jQuery.fn=jQuery.prototype
+        // ∴jQuery.fn.init.prototype=jQuery.fn=jQuery.prototype;
+        //   jQuery.fn.init.prototype=jQuery.prototype
+        //   jQuery.fn.init=jQuery
+        //∴ return new jQuery.fn.init(selector,context) 相当于 new jQuery 绕了一圈就是为了new 自己
+        // 为什么 绕了一圈就是为了new jQuery.fn.init(selector,context)  而不new jQuery呢 ?
+        //是∵jQuery.fn 要获取jQuery.prototype上的所有方法才要这样,同时把jQuery.fn 暴露出去
+    })(window)
+
+    //开发插件的时候使用
+    jQuery.fn.extend()//把方法挂载带原型链上
+    jQuery.extend()//把方法挂载到jQuery
+    jQuery.fn.extend({
+        a: function () {
+            console.log(123)
+        }
+    });
+    $('').a();
+
+    jQuery.extend({
+        s: 12
+    })
+    $.s
+
+</script>
+</body>
+</html>
