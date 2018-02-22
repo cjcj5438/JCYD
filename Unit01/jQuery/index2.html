@@ -21,6 +21,8 @@
     // 不new的情况下: 直接是 return new jQuery.fn.init(selector,context)
     // new jQuery.fn.init 作为中间使者直接 所以new 不new 是一样的  只是原型链上不同
 
+    //1.13.52 jquery 内幕
+
     (function (window, undefiend) {
         var jQuery = function (selector, context) {
             return new jQuery.fn.init(selector, context)
