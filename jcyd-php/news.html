@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>新闻管理系统</title>
+</head>
+<body>
+	<form action="mysql2.php">
+		
+		<p>
+		 	<label for="newsTitle">新闻标题</label>
+			<input type="text" name="newsTitle" id="newsTitle" value="" />
+		</p>
+		
+		<p>
+		 	<label for="newsImg">图片地址</label>
+		 	<input type="file" name="" id="" value="" />
+			<input type="text" name="newsImg" id="newsImg" value="" />
+		</p>
+
+		<p>
+		 	<label for="newsContent">新闻内容</label>
+		 	<textarea name="newsContent" id="newsContent" ></textarea>
+		</p>
+		
+		<p>
+		 	<label for="addTime">新闻时间</label>
+		 	<input type="date" name="addTime" id="addTime" value="" />
+		</p>
+
+		<p>
+		 	<input type="submit" name="" id="" value="提交" />
+		 	<input type="reset" name="" id="" value="重制" />
+		</p>
+		
+	</form>
+<?php
+
+?>
+</body>
+<!--<script>
+	var a=('"+$newsTitle+"','"+$newsImg+"','"+$newsContent+"','"+$addTime+"')
+</script>-->
+</html>
