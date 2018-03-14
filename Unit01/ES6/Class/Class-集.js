@@ -78,7 +78,7 @@
  */
 
 /**
- * new.target 用来确定构造函数是怎么调用的。
+ * new.target  new.target指向当前正在执行的函数;用来确定构造函数是怎么调用的。
  */
 // class Shape {
 //     constructor() {
