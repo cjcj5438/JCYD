@@ -13,7 +13,7 @@ class Man extends Person {
         super(age);
         this.arr = [];
     }
-
+    //set 和 get 关键字方法
     set menu(data) {
         this.arr.push(data)
     }
@@ -35,10 +35,10 @@ class Man extends Person {
 
 }
 Man.init();
-const xiaowang = new Man(30)
-console.log(xiaowang.tell())
+const xiaowang = new Man(30);
+console.log(xiaowang.tell());
 // set 和get 的用法 赋值和取值
 xiaowang.menu = '水果';
 xiaowang.menu = '水果';
 xiaowang.menu = '水果';
-console.log(xiaowang.menu)
+console.log(xiaowang.menu);

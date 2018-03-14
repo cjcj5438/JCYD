@@ -45,9 +45,9 @@ var f=function () { }();
 // 闭包
 // 函数嵌套.并对外提供访问;
 function make() {}
-酸辣秃头
-来教炒肉
-红烧paogui
+// 酸辣秃头
+// 来教炒肉
+// 红烧paogui
 
 
 

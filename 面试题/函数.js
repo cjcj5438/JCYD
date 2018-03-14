@@ -40,3 +40,17 @@ var b=fun(0).fun(1).fun(2).fun(3);
 
 var c=fun(0).fun(1);
 c.fun(2);c.fun(3);
+
+//4
+function test(){
+    return
+    {
+        a:1
+    }
+}
+var f=test();
+console.log(f.a)
+
+//5
+(function () { alert(1)})()
+(function () { alert(2)})()

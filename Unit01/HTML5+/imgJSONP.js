@@ -6,6 +6,6 @@ var start = DAte.now();
 s.src = "http://www.baidu.com/s.gif";
 s.onload=function (ev) {
     var end = Date.now();
-    t = end - start;
+    var t = end - start;
     size=t+"kb/s"
 }
