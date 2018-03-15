@@ -108,6 +108,7 @@
 
  （1）子类的__proto__属性，表示构造函数的继承，总是指向父类。
 
+<<<<<<< Updated upstream
  （2）子类prototype属性的__proto__属性，表示方法的继承，总是指向父类的
  */
 // class A {
@@ -134,3 +135,4 @@
 // Object.setPrototypeOf(B, A);
 //
 // const b = new B();
+
