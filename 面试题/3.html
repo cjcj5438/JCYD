@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>.请写出如下点击li的输出值，并用三种办法正确输出li里的数字。(</h1>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>
+<!--1-->
+<!--<script type="text/javascript">-->
+<!--var list_li = document.getElementsByTagName("li");-->
+<!--for (var i = 0; i < list_li.length; i++) {-->
+<!--list_li[i].onclick = function () {-->
+<!--console.log(this.innerText)-->
+<!--}-->
+<!--}-->
+<!--</script>-->
+<!--2-->
+<!--<script type="text/javascript">-->
+    <!--var arr = document.getElementsByTagName("li");-->
+    <!--var makeArray = function (obj) {-->
+        <!--return Array.prototype.slice.call(obj, 0);-->
+    <!--}-->
+    <!--try {-->
+        <!--Array.prototype.slice.call(document.documentElement.childNodes, 0)[0].nodeType;-->
+    <!--} catch (e) {-->
+        <!--makeArray = function (obj) {-->
+            <!--var res = [];-->
+            <!--for (var i = 0, len = obj.length; i < len; i++) {-->
+                <!--res.push(obj[i]);-->
+            <!--}-->
+            <!--return res;-->
+        <!--}-->
+    <!--}-->
+    <!--arr = makeArray(arr);-->
+    <!--// console.log(arr)-->
+    <!--arr.map(function(item,index,arr){-->
+        <!--item.onclick=function () {-->
+            <!--console.log(this.innerText)-->
+        <!--}-->
+    <!--})-->
+<!--</script>-->
+<!--3-->
+<script>
+    var arr = document.getElementsByTagName("li");
+    arr=[...arr];
+    arr.map(function(item,index,arr) {
+        item.onclick = function () {
+            console.log(this.innerText)
+        }
+    })
+</script>
+</body>
+</html>

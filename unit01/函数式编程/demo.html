@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数式的编程</title>
+</head>
+<body>
+<script>
+    //做一些准备工作
+    localStorage.test = ["a", "b"];
+    //函数组合代码
+    const compose = (f, g) => (x => f(g(x)));
+
+    /**
+     * 基础函子
+     * 1,拥有map对象的容器变成函子
+     * 2,map对象的作用是可以通过变形关系 f 函数 作用到每一个函子的值
+     */
+    class Functor {
+        constructor(val) {
+            this.val = val;
+        }
+
+        map(f) {
+            return new Functor(f(this.val));
+        }
+    }
+
+    /**
+     * Monad 函子
+     * 1, 核心作用是总是返回一个单层的函子 '
+     * 2, 通过拆解成互相链接的多个步骤,只要提供下一一步运行所需的函数,整个运算就会自动进行下去;
+     * 3, 可以让我们避开嵌套地狱,可以轻松的进行深度嵌套的函数, 比如IO和其他异步任务
+     */
+    class Monad extends Functor {
+        join() {
+            // 实现返回单层函子
+            return this.val();
+        }
+
+        flatMap(f) {
+            return this.map(f).join();
+        }
+    }
+
+    /**
+     * IO函子
+     * 1,现实开发中不是所有的操作都是非常纯的,所以IO函子主要是封装那些不纯的操作;
+     * 2,特别是要记下他的map方法
+     */
+    class IO extends Monad {
+        map(f) {
+            return IO.of(compose(f, this.val))
+        }
+    }
+
+    IO.of = x => new IO(x);
+
+    //这里有三个不纯的函数;所以要用IO函子包裹,然后就变纯了  一定要包裹到IO函子里面
+    const print = function (x) {
+        return new IO(function () {
+            console.warn(x + "【step 2】");
+            return x;
+        });
+    }
+    const tail = function (x) {
+        return new IO(function () {
+            console.warn(x[x.length - 1] + "【step 1】");
+            return x[x.length - 1] + "【step 1】";
+        });
+    }
+    const readFile = function (data) {
+        return new IO(function () {
+            console.warn('chain start');
+            return localStorage[data];
+        });
+    };
+    //关键的核心代码
+    //1.readFile('test') 创建了一个IO函子 值是 return localStorage["test"];
+    //2.IO继承自Monad 所以拥有了flatMap（把它叫chain也行）
+    //3.flatMap 接收了tail函数 tail干了啥呢 接受一个x返回一个新的IO 为啥呢？？因为tail里的操作不纯啊
+    //4.flatMap内部执行了map 这个map是IO的map哦 因为extend的时候重写了
+    //5.IO.of(compose(f, this.val)) => IO函子（value = function(x){return f(g(x) }）
+    // var g = function () {
+    //         console.log('chain start');
+    //         return localStorage[data];
+    // })
+    // var f = function (x) {
+    //     return new IO(function () {
+    //         console.log(x[x.length - 1] + "【step 1】");
+    //         return x[x.length - 1] + "【step 1】";
+    //     });
+    // }
+    // f(g());
+    //6.继续执行join函数 如果不执行join 最下面要一层层的执行val(可以去掉join试验一下) 这也是monad精髓所在
+    //7.上面实际上返回了 一个新的IO 所以可以链式的继续flatMap 但是万万注意的是这个io的value是组合函数传回来的一个函数 需执行记住啦！！
+    //8.所以join return this.val()会继续返回新的IO方便链式 完成了全部的操作
+    const result = readFile('test')
+        .flatMap(tail)
+        .flatMap(print);
+    //函数式编程只关心计算 和 数据的映射 并不关注该题的步骤 是旧的范畴到新范畴的映射
+    //其余的什么curry 懒加载 递归 等等都是衍生知识 仅此而已 如果你更关注过程的话 最后的一步解答方式该是如下
+    //result.val();
+    function sum(x, total) {
+        if (x === 1) {
+            return x + total;
+        }
+        return sum(x - 1, x + total);
+    }
+
+    console.log(sum(10498, 0))
+</script>
+</body>
+</html>
